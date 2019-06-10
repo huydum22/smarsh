@@ -1,0 +1,101 @@
+<div class="login">
+	<div class="main-agileits">
+		<div class="form-w3agile">
+			<h3>Đăng kí</h3>
+			<form action="" method="POST">
+				<label>Họ tên</label>
+				<div class="key">
+					<i class="fa fa-user" aria-hidden="true"></i>
+					<input type="text" name="name" required="" placeholder="Họ và tên">
+					<div class="clearfix"></div>
+				</div>
+				<label>Số điện thoại</label>
+				<div class="key">
+					<i class="fas fa-phone" aria-hidden="true"></i>
+					<input type="number" name="sdt" required="" placeholder="Số điện thoại">
+					<div class="clearfix"></div>
+				</div>
+				<label>Email</label>
+				<span id="error-message" aria-hidden="true" role="alert"> </span>
+				<div class="key">
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					<input type="email" name="email" id="email" required="" placeholder="Email">
+					<div class="clearfix"></div>
+				</div>
+				<label>Tên tài khoản</label>
+				<div class="key">
+					<i class="fa fa-user" aria-hidden="true"></i>
+					<input type="text" name="username" id="username" required="" placeholder="tên tài khoản">
+					<div class="clearfix"></div>
+				</div>
+				<label>Mật khẩu</label>
+				<div class="key">
+					<i class="fa fa-lock" aria-hidden="true"></i>
+					<input type="password" name="pass" id="pass" placeholder="Mật khẩu" required>
+					<div class="clearfix"></div>
+				</div>
+				<label>Xác nhận</label>
+				<div class="key">
+					<i class="fa fa-lock" aria-hidden="true"></i>
+					<input type="password" name="confirm_password" id="confirm_password" data-parsley-equalto="#pass"
+						placeholder="Xác nhận mật khẩu" required>
+					<div class="clearfix"></div>
+				</div>
+				<label>Địa chỉ</label>
+				<div class="key">
+					<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+					<input type="text" name="address" required="" placeholder="Địa chỉ">
+					<div class="clearfix"></div>
+				</div>
+				<label>Giới tính</label>
+				<div class="key">
+					<i class="fas fa-transgender" aria-hidden="true"></i>
+					<select type="text" id="input-select" name="gender">
+						<option>Nam</option>
+						<option>Nữ</option>
+						<option>Khác</option>
+					</select>
+					<div class="clearfix"></div>
+				</div>
+				<label>Ngày sinh</label>
+				<div class="key">
+					<i class="fas fa-calendar-day" aria-hidden="true"></i>
+					<input type="date" name="date" required="" placeholder="Ngày sinh">
+					<div class="clearfix"></div>
+				</div>
+				<input type="submit" value="Đăng kí">
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	var password = document.getElementById("pass"), confirm_password = document.getElementById("confirm_password"), username = document.getElementById("username");
+	function validatePassword() {
+		if (password.value != confirm_password.value) {
+			confirm_password.setCustomValidity("Mật khẩu chưa trùng khớp");
+		} else {
+			confirm_password.setCustomValidity('');
+		}
+	}
+
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+</script>
+<script>
+	$('#email').keyup(function () {
+		var email = document.getElementById("email")
+		$.getJSON('/user/checkEmail?email=' + $('#email').val(), function (data) {
+			if (!data) {
+				$('#error-message').addClass('alert alert-danger');
+				$('#error-message').html('Email đã tồn tại. Vui lòng chọn email khác.');
+				$("#register").attr("disabled", true);
+			}
+			else {
+				$('#error-message').removeClass('alert alert-danger')
+				$('#error-message').html('');
+				$("#register").attr("disabled", false);
+			}
+		}
+		)
+	})
+</script>

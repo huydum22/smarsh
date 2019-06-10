@@ -1,0 +1,54 @@
+
+	<div class="login">
+		<div class="main-agileits">
+				<div class="form-w3agile">
+					<h3>{{title}}</h3>
+						<label>Họ tên</label>
+						<div class="key">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<input  type="text"  name="name" required=""  placeholder="Họ và tên" value="{{userFound.name}}" disabled>
+							<div class="clearfix"></div>
+						</div>
+						<label>Số điện thoại</label>
+						<div class="key">
+							<i class="fas fa-phone" aria-hidden="true"></i>
+							<input  type="number"  name="sdt" required=""  placeholder="Số điện thoại" value="{{userFound.sdt}}"disabled>
+							<div class="clearfix"></div>
+						</div>
+						<label>Email</label>
+						<div class="key">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<input  type="email"  name="email"  required=""  placeholder="Email" value="{{userFound.email}}" disabled>
+							<div class="clearfix"></div>
+						</div>
+						<label>Tên tài khoản</label>
+						<div class="key">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<input  type="text"  name="username" required=""  placeholder="tên tài khoản" value="{{userFound.username}}" disabled>
+							<div class="clearfix"></div>
+						</div>
+						<label>Địa chỉ</label>
+						<div class="key">
+							<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+							<input  type="text"  name="address" required=""  placeholder="Địa chỉ" value="{{userFound.address}}" disabled>
+							<div class="clearfix"></div>
+						</div>
+						<label>Giới tính</label>
+						<div class="key">
+							<i class="fas fa-transgender" aria-hidden="true"></i>
+							<select type="text"  id="input-select" name="gender" disabled>
+                                <option>{{userFound.gender}}</option>
+                            </select>
+							<div class="clearfix"></div>
+						</div>
+						<label>Ngày sinh</label>
+						<div class="key">
+							<i class="fas fa-calendar-day" aria-hidden="true"></i>
+							<input  type="date"  name="date" required=""  placeholder="Ngày sinh" value="{{userFound.date}}" disabled>
+							<div class="clearfix"></div>
+						</div>		
+							<input type="submit" value="Chỉnh sửa">
+		
+				</div>
+			</div>
+		</div>
