@@ -1,27 +1,29 @@
 </div>
-	<div class="login">
-	
-		<div class="main-agileits">
-				<div class="form-w3agile">
-					<h3>Đăng nhập</h3>
-					<form action="" method="post">
-						<div class="key">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-							<input  type="text" name="email" id="email" required="" placeholder="Email">
-							<div class="clearfix"></div>
-						</div>
-						<div class="key">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-							<input  type="password" name="pass" id="pass" required="" placeholder="Mật khẩu">
-							<div class="clearfix"></div>
-						</div>
-						<input type="submit" value="Đăng nhập">
-					</form>
+<div class="login">
+	<div class="main-agileits">
+		<div class="form-w3agile">
+			<h3>Đăng nhập</h3>
+			{{#if message}}
+			<div class="alert alert-danger">{{message}}</div>
+			{{/if}}
+			<form action="" method="post">
+				<div class="key">
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					<input type="text" name="email" id="email" required="" placeholder="Email">
+					<div class="clearfix"></div>
 				</div>
-				<div class="forg">
-					<a href="#" class="forg-left">Quên mật khẩu</a>
-					<a href="/user/register" class="forg-right">Đăng kí</a>
-				<div class="clearfix"></div>
+				<div class="key">
+					<i class="fa fa-lock" aria-hidden="true"></i>
+					<input type="password" name="pass" id="pass" required="" placeholder="Mật khẩu">
+					<div class="clearfix"></div>
 				</div>
-			</div>
+				<input type="submit" value="Đăng nhập">
+			</form>
 		</div>
+		<div class="forg">
+			<a href="#" class="forg-left">Quên mật khẩu</a>
+			<a href="/user/register" class="forg-right">Đăng kí</a>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>

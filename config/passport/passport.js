@@ -9,11 +9,11 @@ module.exports = function (passport){
         try{
             const user = await User.getUser(email);
             if (!user){
-                return done(null,false);
+                return done(null,false, { message: 'Email hoặc mật khẩu không đúng' });
             }
             const isValidPass = await User.validPassword(email,pass);
             if (!isValidPass){
-                return done(null, false);
+                return done(null, false, { message: 'mail hoặc mật khẩu không đúng' });
             }
             return done(null,user);
         } catch (e){

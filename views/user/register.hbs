@@ -86,12 +86,12 @@
 		var email = document.getElementById("email")
 		$.getJSON('/user/checkEmail?email=' + $('#email').val(), function (data) {
 			if (!data) {
-				$('#error-message').addClass('alert alert-danger');
+				$('#error-message').addClass('alert1 alert-danger');
 				$('#error-message').html('Email đã tồn tại. Vui lòng chọn email khác.');
 				$("#register").attr("disabled", true);
 			}
 			else {
-				$('#error-message').removeClass('alert alert-danger')
+				$('#error-message').removeClass('alert1 alert-danger')
 				$('#error-message').html('');
 				$("#register").attr("disabled", false);
 			}

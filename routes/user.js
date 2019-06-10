@@ -10,7 +10,8 @@ router.get('/login',forwardAuthenticated, user_controller.login_page);
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', { 
         failureRedirect: '/user/login',
-        successRedirect:'/'
+        successRedirect:'/',
+        failureFlash: true 
         })(req,res,next);
 });
 

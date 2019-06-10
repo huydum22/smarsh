@@ -1,7 +1,7 @@
 const user = require('../../models/userModel');
 
 exports.login_page = function (req, res) {
-    res.render('user/login');
+    res.render('user/login',{message: req.flash('error')});
 };
 
 exports.register_page = function (req, res) {
