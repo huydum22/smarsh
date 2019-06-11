@@ -20,25 +20,34 @@ const product = new Schema({
     info: String,
     danhgia: String,
     help: String,
-    page: String
+    page: String,
+    search:String
 
 }, { collection: PRODUCTS });
 
 const list = mongoose.model(PRODUCTS, product);
+const perPage = 9;
 
-
-const listProduct = async(name) => {}
-const listProduct1 = async(title, imageOffer, banner, res) => {
+const listProduct1value = async(cate,page ,imageOffer, banner, res) => {
     const listproduct = list;
-    await listproduct.find({}).limit(9).exec((err, Product) => {
+    await listproduct.find({'phanloai':cate}).limit(perPage).skip((perPage*page)-perPage).exec((err, Product) => {
         if (err) {
             console.log('that bai');
         } else {
-            res.render('listProduct/listProduct', { title: title, Product, imageOffer: imageOffer, banner: banner });
+            res.render('listProduct/listProduct', { Product, imageOffer: imageOffer, banner: banner ,page,cate});
         }
     })
 }
-
+const searchProduct = async(text,page ,imageOffer, banner, res) => {
+    const listproduct = list;
+    await listproduct.find({ten:new RegExp(text)}).limit(perPage).skip((perPage*page)-perPage).exec((err, Product) => {
+        if (err) {
+            console.log('that bai');
+        } else {
+            res.render('listProduct/searchProduct', { Product, imageOffer: imageOffer, banner: banner ,page,text});
+        }
+    })
+}
 const viewProduct = async(res, id) => {
     const viewproduct = list;
     viewproduct.findById(id).then(productFound => {
@@ -52,9 +61,10 @@ const viewProduct = async(res, id) => {
 
 module.exports = {
     list: list,
-    listProduct: listProduct,
+    listProduct1value: listProduct1value,
     viewProduct: viewProduct,
-    listProduct1: listProduct1
+    perPage:perPage,
+    searchProduct:searchProduct
 }
 
 //module.exports.listProduct = listProduct;

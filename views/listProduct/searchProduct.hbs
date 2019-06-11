@@ -160,30 +160,34 @@
     var page1 = parseInt($('#page1').html());
     var page2 = page1 + 1;
     var page3 = page1 + 2;
+    var test = $('#search1').val()
+    $('#page2').html(page2);
+    $('#page3').html(page3);
+        $('#search').val(test);
+
     $('#page1').click(function () {
-        
-        $('#page1').attr("href", "/products/{{cate}}/viewpage/" + page1);
         $('#page1').addClass('active');
         $('#page2').removeClass('active');
         $('#page3').removeClass('active');
+        $('#page1').attr("href", "/products/searchProduct/search={{text}}/" + page1);
         $('#page1').html(page1);
         $('#page2').html(page2);
         $('#page3').html(page3);
     });
     $('#page2').click(function () {
-        $('#page2').attr("href", "/products/{{cate}}/viewpage/" + page2);
         $('#page1').removeClass('active');
         $('#page2').addClass('active');
         $('#page3').removeClass('active');
+        $('#page2').attr("href", "/products/searchProduct/search={{text}}/" + page2);
         $('#page1').html(page1);
         $('#page2').html(page2);
         $('#page3').html(page3);
     });
     $('#page3').click(function () {
-        $('#page3').attr("href", "/products/{{cate}}/viewpage/" + page3);
         $('#page1').removeClass('active');
         $('#page2').removeClass('active');
         $('#page3').addClass('active');
+        $('#page3').attr("href", "/products/searchProduct/search={{text}}/" + page3);
         $('#page1').html(page1);
         $('#page2').html(page2);
         $('#page3').html(page3);
@@ -192,10 +196,10 @@
         page1 += 3;
         page2 += 3;
         page3 += 3;
-        $('#next').attr("href", "/products/{{cate}}/viewpage/" + page1);
         $('#page1').addClass('active');
         $('#page2').removeClass('active');
         $('#page3').removeClass('active');
+        $('#next').attr("href", "/products/searchProduct/search={{text}}/" + page1);
         $('#page1').html(page1);
         $('#page2').html(page2);
         $('#page3').html(page3);
@@ -205,10 +209,10 @@
             page1 = 1;
             page2 = 2;
             page3 = 3;
-            $('#prev').attr("href", "/products/{{cate}}/viewpage/" + page1);
             $('#page1').addClass('active');
             $('#page2').removeClass('active');
             $('#page3').removeClass('active');
+            $('#prev').attr("href", "/products/searchProduct/search={{text}}/" + page1);
             $('#page1').html(page1);
             $('#page2').html(page2);
             $('#page3').html(page3);
@@ -216,15 +220,13 @@
             page1 -= 3;
             page2 -= 3;
             page3 -= 3;
-            $('#prev').attr("href", "/products/{{cate}}/viewpage/" + page1);
             $('#page1').addClass('active');
             $('#page2').removeClass('active');
             $('#page3').removeClass('active');
+            $('#prev').attr("href", "/products/searchProduct/search={{text}}/" + page1);
             $('#page1').html(page1);
             $('#page2').html(page2);
             $('#page3').html(page3);
         }
     });
-    $('#page2').html(page2);
-    $('#page3').html(page3);
 </script>

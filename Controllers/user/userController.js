@@ -25,7 +25,7 @@ exports.profile_page = function (req, res) {
 
 exports.logout_page = async (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect('/products');
 }
 
 exports.checkEmail = async (req, res)=>{
