@@ -11,6 +11,7 @@ const passport = require('passport');
 const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/user');
+const productAPIRouter = require('./routes/API/productAPI');
 
 require('./config/passport/passport')(passport);
 
@@ -20,13 +21,13 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = Promise;
 
-const run = async () => {
-  await mongoose.connect('mongodb+srv://huyho0202:huydum@datawebbanhang-0zasm.mongodb.net/DAWeb', {
-    useNewUrlParser: true,
-    autoReconnect: true,
-    reconnectTries: 1000000,
-    reconnectInterval: 3000
-  })
+const run = async() => {
+    await mongoose.connect('mongodb+srv://huyho0202:huydum@datawebbanhang-0zasm.mongodb.net/DAWeb', {
+        useNewUrlParser: true,
+        autoReconnect: true,
+        reconnectTries: 1000000,
+        reconnectInterval: 3000
+    })
 }
 run().catch(error => console.error(error))
 
@@ -38,9 +39,9 @@ app.set('view engine', 'hbs');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
-  secret: "cats",
-  resave: true,
-  saveUninitialized: true
+    secret: "cats",
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -54,28 +55,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-app.use('/products',productsRouter);
-app.use('/user',userRouter);
+app.use('/products', productsRouter);
+app.use('/user', userRouter);
+app.use('/API/product', productAPIRouter);
+
+
+const isEqual = function(a, b, opts) {
+    if (a == b) {
+        return opts.fn(this)
+    } else {
+        return opts.inverse(this)
+    }
+}
+
+var hbs = require('hbs');
+hbs.registerHelper('if_eq', isEqual);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
 });
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

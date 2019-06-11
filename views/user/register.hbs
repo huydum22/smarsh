@@ -35,6 +35,7 @@
 					<div class="clearfix"></div>
 				</div>
 				<label>Xác nhận</label>
+				<span id="error-message1" aria-hidden="true" role="alert"> </span>
 				<div class="key">
 					<i class="fa fa-lock" aria-hidden="true"></i>
 					<input type="password" name="confirm_password" id="confirm_password" data-parsley-equalto="#pass"
@@ -63,18 +64,22 @@
 					<input type="date" name="date" required="" placeholder="Ngày sinh">
 					<div class="clearfix"></div>
 				</div>
-				<input type="submit" value="Đăng kí">
+				<input type="submit" value="Đăng kí" id="register">
 			</form>
 		</div>
 	</div>
 </div>
 <script>
-	var password = document.getElementById("pass"), confirm_password = document.getElementById("confirm_password"), username = document.getElementById("username");
+	var password = document.getElementById("pass"), confirm_password = document.getElementById("confirm_password")
 	function validatePassword() {
 		if (password.value != confirm_password.value) {
-			confirm_password.setCustomValidity("Mật khẩu chưa trùng khớp");
+			$('#error-message1').addClass('alert1 alert-danger');
+				$('#error-message1').html('Mật khẩu chưa trùng khớp.');
+				$("#register").attr("disabled", true);
 		} else {
-			confirm_password.setCustomValidity('');
+			$('#error-message1').removeClass('alert1 alert-danger')
+				$('#error-message1').html('');
+				$("#register").attr("disabled", false);
 		}
 	}
 

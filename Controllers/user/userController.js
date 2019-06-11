@@ -14,7 +14,8 @@ exports.addAccount = function (req, res) {
 };
 
 exports.profile_page = function (req, res) {
-    user.findById("5cec601f7ed21a6b8e122e8b").then(userFound => {
+    const findUser = user.list;
+    findUser.findById(req.params.id).then(userFound => {
         if (!userFound) {
             res.send('that bai');
         }
