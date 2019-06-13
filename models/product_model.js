@@ -8,6 +8,7 @@ const product = new Schema({
     ma: String,
     gia: String,
     imgSrc: String,
+    nhasx: String,
     rate: String,
     loaisp: String,
     mausac: String,
@@ -38,6 +39,7 @@ const listProduct1value = async(cate,page ,imageOffer, banner, res) => {
         }
     })
 }
+
 const searchProduct = async(text,page ,imageOffer, banner, res) => {
     const listproduct = list;
     await listproduct.find({ten:new RegExp(text)}).limit(perPage).skip((perPage*page)-perPage).exec((err, Product) => {
@@ -48,6 +50,53 @@ const searchProduct = async(text,page ,imageOffer, banner, res) => {
         }
     })
 }
+
+
+const searchProductWithKeywordJson = async(text,res) => {
+    const listproduct = list;
+    await listproduct.find({ten:new RegExp(text)},function(err, Product)  {
+        if (err){
+            console.log('thatbai');
+        }
+        else{
+            res.json(Product);
+        }
+    })
+}
+const searchBrandJson = async(text,res) => {
+    const listproduct = list;
+    await listproduct.find({nhasx:text},function(err, Product)  {
+        if (err){
+            console.log('thatbai');
+        }
+        else{
+            res.json(Product);
+        }
+    })
+}
+const searchColorJson = async(text,res) => {
+    const listproduct = list;
+    await listproduct.find({mausac:text},function(err, Product)  {
+        if (err){
+            console.log('thatbai');
+        }
+        else{
+            res.json(Product);
+        }
+    })
+}
+const searchSizeJson = async(text,res) => {
+    const listproduct = list;
+    await listproduct.find({kichco:text},function(err, Product)  {
+        if (err){
+            console.log('thatbai');
+        }
+        else{
+            res.json(Product);
+        }
+    })
+}
+
 const viewProduct = async(res, id) => {
     const viewproduct = list;
     viewproduct.findById(id).then(productFound => {
@@ -60,11 +109,15 @@ const viewProduct = async(res, id) => {
 
 
 module.exports = {
-    list: list,
-    listProduct1value: listProduct1value,
-    viewProduct: viewProduct,
-    perPage:perPage,
-    searchProduct:searchProduct
+    list                            :list,
+    listProduct1value               :listProduct1value,
+    viewProduct                     :viewProduct,
+    perPage                         :perPage,
+    searchProduct                   :searchProduct,
+    searchProductWithKeywordJson    :searchProductWithKeywordJson,
+    searchBrandJson                 :searchBrandJson,
+    searchColorJson                 :searchColorJson,
+    searchSizeJson                  :searchSizeJson
 }
 
 //module.exports.listProduct = listProduct;

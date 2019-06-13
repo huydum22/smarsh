@@ -4045,7 +4045,14 @@ p.w3-agile {
     font-size: 14px;
     line-height: 1.42857143;
 }
-
+.radiotext a {
+    font-weight: normal;
+    margin-bottom: 1em;
+    font-family: 'open Sans', sans-serif;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
 .cartProduct {
     margin-bottom: 5em;
 }

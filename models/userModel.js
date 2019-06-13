@@ -23,9 +23,11 @@ const user = new Schema({
     date        :String,
 
 },{collection: USERS});
-
+// danh sách
 const list = mongoose.model(USERS,user);
 
+
+// đăng kí tài khoản
 const saveUser = async (newuser) =>{
     const NewUser = new list(newuser);
     bcrypt.hash(newuser.pass,saltRounds,function (err,hash){
@@ -34,9 +36,13 @@ const saveUser = async (newuser) =>{
     })
 }
 
+
+// lấy người dùng
 const getUser = async (email) => {
     return await list.findOne({ 'email': email });
 };
+
+//kiểm tra password
 const validPassword = async (email, password) => {
     const user = await getUser(email);
     if (!user)
@@ -44,6 +50,8 @@ const validPassword = async (email, password) => {
     return await bcrypt.compare(password, user.pass);
 };
 
+
+// kiểm tra email
 const checkEmail = async (email) => {
     const user = await getUser(email);
     if (!user)

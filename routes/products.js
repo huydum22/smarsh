@@ -7,8 +7,7 @@ var products_controller = require('../Controllers/products/product_Controller');
 
 /* Get Product Page */
 router.get('/searchProduct',products_controller.search_list);
-
-
+router.get('/cloth', products_controller.men_list);
 router.get('/men', products_controller.men_list);
 router.get('/women', products_controller.women_list);
 router.get('/kids', products_controller.kids_list);
@@ -29,6 +28,7 @@ router.get('/watches', products_controller.watches_list);
 router.get('/:category/:id', products_controller.viewProduct);
 router.get('/searchProduct/search=:text/:page',products_controller.search_list1);
 router.get('/:cate/viewpage/:page', products_controller.cloth_List);
+
     /******************************* */
     /******************************* */
     /******************************* */
