@@ -1,54 +1,101 @@
-
-	<div class="login">
-		<div class="main-agileits">
-				<div class="form-w3agile">
-					<h3>{{title}}</h3>
-						<label>Họ tên</label>
-						<div class="key">
-							<i class="fa fa-user" aria-hidden="true"></i>
-							<input  type="text"  name="name" required=""  placeholder="Họ và tên" value="{{userFound.name}}" disabled>
-							<div class="clearfix"></div>
-						</div>
-						<label>Số điện thoại</label>
-						<div class="key">
-							<i class="fas fa-phone" aria-hidden="true"></i>
-							<input  type="number"  name="sdt" required=""  placeholder="Số điện thoại" value="{{userFound.sdt}}"disabled>
-							<div class="clearfix"></div>
-						</div>
-						<label>Email</label>
-						<div class="key">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-							<input  type="email"  name="email"  required=""  placeholder="Email" value="{{userFound.email}}" disabled>
-							<div class="clearfix"></div>
-						</div>
-						<label>Tên tài khoản</label>
-						<div class="key">
-							<i class="fa fa-user" aria-hidden="true"></i>
-							<input  type="text"  name="username" required=""  placeholder="tên tài khoản" value="{{userFound.username}}" disabled>
-							<div class="clearfix"></div>
-						</div>
-						<label>Địa chỉ</label>
-						<div class="key">
-							<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-							<input  type="text"  name="address" required=""  placeholder="Địa chỉ" value="{{userFound.address}}" disabled>
-							<div class="clearfix"></div>
-						</div>
-						<label>Giới tính</label>
-						<div class="key">
-							<i class="fas fa-transgender" aria-hidden="true"></i>
-							<select type="text"  id="input-select" name="gender" disabled>
-                                <option>{{userFound.gender}}</option>
-                            </select>
-							<div class="clearfix"></div>
-						</div>
-						<label>Ngày sinh</label>
-						<div class="key">
-							<i class="fas fa-calendar-day" aria-hidden="true"></i>
-							<input  type="date"  name="date" required=""  placeholder="Ngày sinh" value="{{userFound.date}}" disabled>
-							<div class="clearfix"></div>
-						</div>		
-							<input type="submit" value="Chỉnh sửa">
-		
-				</div>
+<div class="login">
+	<div class="main-agileits">
+		<div class="form-w3agile">
+			<h3>{{title}}</h3>
+			<div id="resultsw"></div>
+			<label>Họ tên</label>
+			<div class="key">
+				<i class="fa fa-user" aria-hidden="true"></i>
+				<input type="text" name="name" id="name" required="" placeholder="Họ và tên" value="{{user.name}}" disabled>
+				<div class="clearfix"></div>
 			</div>
+			<label>Số điện thoại</label>
+			<div class="key">
+				<i class="fas fa-phone" aria-hidden="true"></i>
+				<input type="number" name="sdt" id="sdt" required="" placeholder="Số điện thoại" disabled
+					value="{{user.sdt}}">
+				<div class="clearfix"></div>
+			</div>
+			<span id="error-message"></span>
+			<label>Email</label>
+			<div class="key">
+				<i class="fa fa-envelope" aria-hidden="true"></i>
+				<input type="email" name="email" id="email" required="" placeholder="Email" value="{{user.email}}" disabled>
+				<div class="clearfix"></div>
+			</div>
+			<label>Tên tài khoản</label>
+			<div class="key">
+				<i class="fa fa-user" aria-hidden="true"></i>
+				<input type="text" name="username" id="username" required="" placeholder="tên tài khoản" disabled
+					value="{{user.username}}">
+				<div class="clearfix"></div>
+			</div>
+			<label>Địa chỉ</label>
+			<div class="key">
+				<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+				<input type="text" name="address" id="address" required="" placeholder="Địa chỉ" disabled
+					value="{{user.address}}">
+				<div class="clearfix"></div>
+			</div>
+			<label>Giới tính</label>
+			<div class="key">
+				<i class="fas fa-transgender" aria-hidden="true"></i>
+				<select type="text" id="input-select" name="gender" disabled>
+					<option>{{user.gender}}</option>
+				</select>
+				<div class="clearfix"></div>
+			</div>
+			<input type="text", value="{{user._id}}" id="_id" hidden=true>
+			<label>Ngày sinh</label>
+			<div class="key">
+				<i class="fas fa-calendar-day" aria-hidden="true"></i>
+				<input type="date" name="date" id="date" required="" placeholder="Ngày sinh" value="{{user.date}}" disabled>
+				<div class="clearfix"></div>
+			</div>
+			<input type="submit" value="Chỉnh sửa" id="submit">
 		</div>
+	</div>
+</div>
+<script>
+	var status = $('#submit').val();
+	$('#submit').click(function () {
+		var changestatus = $('#submit').val();
+		if (changestatus == 'Chỉnh sửa') {
+			$('#name').attr("disabled", false).addClass('alert alert-info');
+			$('#sdt').attr("disabled", false).addClass('alert alert-info');;
+			$('#username').attr("disabled", false).addClass('alert alert-info');;
+			$('#address').attr("disabled", false).addClass('alert alert-info');;
+			$('#input-select').attr("disabled", false).addClass('alert alert-info');;
+			$('#date').attr("disabled", false).addClass('alert alert-info');;
+			$('#submit').val('Cập nhật')
+		}
+		if (changestatus == 'Cập nhật') {
+			var data = {};
+			data.name = $('#name').val();
+			data.sdt= $('#sdt').val();
+			data.address = $('#address').val();
+			data.username = $('#username').val();
+			data.gender = $('#input-select').val();
+			data.date = $('#date').val();
+			data._id =  $('#_id').val();
+			$.ajax({
+			url: "/API/user/updateUser",
+			type: "post",
+			dataType: "json",
+			data: (data),
+			success: function (text) {
+				$('#result').addClass('alert alert-success')
+				$('#result').html('Cập nhật thành công');
+			}
+		})
+			$('#submit').val('Chỉnh sửa')
+			$('#name').attr("disabled", true).removeClass();
+			$('#sdt').attr("disabled", true).removeClass();
+			$('#email').attr("disabled", true).removeClass();
+			$('#username').attr("disabled", true).removeClass();
+			$('#address').attr("disabled", true).removeClass();
+			$('#input-select').attr("disabled", true).removeClass();
+			$('#date').attr("disabled", true).removeClass();
+		}
+	})
+</script>

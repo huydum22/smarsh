@@ -7,13 +7,16 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+let handlebars = require('express-handlebars');
 
 
 
 const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/user');
+const cartRouter = require('./routes/cart');
 const productAPIRouter = require('./routes/API/productAPI');
+const userAPIRouter = require('./routes/API/userAPI');
 
 require('./config/passport/passport')(passport);
 
@@ -36,6 +39,12 @@ run().catch(error => console.error(error))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', handlebars({
+    extname: 'hbs',
+    layoutsDir: path.join(__dirname, 'views', 'layouts'),
+    defaultLayout: 'layout.hbs',
+    partialsDir: [ path.join(__dirname, 'views') ]
+}));
 app.set('view engine', 'hbs');
 
 
@@ -56,11 +65,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
 app.use('/user', userRouter);
 app.use('/API/product', productAPIRouter);
+app.use('/API/user', userAPIRouter);
+app.use('/cart', cartRouter);
 
 
 const isEqual = function(a, b, opts) {

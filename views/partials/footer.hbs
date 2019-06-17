@@ -1,0 +1,72 @@
+<!-- newsletter -->
+	<div class="newsletter">
+		<div class="container">
+			<div class="col-md-6 w3agile_newsletter_left">
+				<h3>Bảng tin</h3>
+				<p>Nhập email để có thể nhận được những ưu đãi lớn nhất</p>
+			</div>
+			<div class="col-md-6 w3agile_newsletter_right">
+				<form action="">
+					<input type="email" name="Email" value="Email" onfocus="this.value = '';"
+						onblur="if (this.value == '') {this.value = 'Email';}" required="">
+					<input type="submit" value="Đăng kí" />
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //newsletter -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-3 footer-grids fgd1">
+				<a href="/"><img src="/images/logo2.png" alt=" " />
+					<h3>FASHION<span>CLUB</span></h3>
+				</a>
+				<ul>
+					<li>227 Nguyễn Văn Cừ, Phường 4, Quận 5</li>
+					<li>TP Hồ Chí Minh</li>
+					<li><a href="huyho0202@gmail.com">huyho0202@gmail.com</a></li>
+					<a href="https://www.instagram.com"><i class="fab fa-instagram" aria-hidden="true"
+							style="font-size: 40px"></i></a>
+					<a href="https://www.youtube.com/"><i class="fab fa-youtube" aria-hidden="true"
+							style="font-size: 40px"></i></a>
+					<a href="https://www.facebook.com/huydum22"><i class="fab fa-facebook-f" aria-hidden="true"
+							style="font-size: 40px"></i></a>
+					<a href="https://www.facebook.com"><i class="fab fa-linkedin" aria-hidden="true"
+							style="font-size: 40px"></i></a>
+				</ul>
+			</div>
+			<div class="col-md-3 footer-grids fgd2">
+				<h4>Thông tin</h4>
+				<ul>
+					<li><a href="/contact">Liên hệ chúng tôi</a></li>
+					<li><a href="/faq">Hỏi đáp</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 footer-grids fgd3">
+				<h4>Của hàng</h4>
+				<ul>
+					<li><a href="/products/jewellery">trang sức</a></li>
+					<li><a href="/products/cosmetics">Mỹ phẩm</a></li>
+					<li><a href="/products/shoes">Giày</a></li>
+					<li><a href="/products/deos">Nước hoa</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 footer-grids fgd4">
+				<h4>Tài khoản của tôi</h4>
+				<ul>
+					{{#if user}}
+					<li><a href="/user/logout">Đăng xuất</a></li>
+					{{else}}
+					<li><a href="/user/login">Đăng nhập</a></li>
+					<li><a href="/user/register">Đăng kí</a></li>
+					{{/if}}
+					<li><a href="/cart/payment">Khuyên dùng </a></li>
+					<li><a href="/payment">Phương thức mua hàng</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+			<p class="copy-right">© 2019 Fashion Club . Tất cả được bản quyền | Thiết kế bởi <a
+					href="https://www.facebook.com/huydum22"> tôi.</a></p>
+		</div>
+	</div>

@@ -1,113 +1,168 @@
-<div class="products">	 
-		<div class="container">  
-			<div class="single-page">
-				<div class="single-page-row" id="detail-21">
-					<div class="col-md-6 single-top-left">	
-						<div class="flexslider">
-							<ul class="slides">
-								<li data-thumb="/images/s1.jpg">
-									<div class="thumb-image detail_images"> <img src="{{productFound.imgSrc}}" data-imagezoom="true" class="img-responsive" alt=""> </div>
-								</li>
-						</div>
+<div class="products">
+	<div class="container">
+		<div class="single-page">
+			<div class="single-page-row" id="detail-21">
+				<div class="col-md-6 single-top-left">
+					<div class="flexslider">
+						<ul class="slides">
+							<li data-thumb="/images/s1.jpg">
+								<div class="thumb-image detail_images"> <img src="{{productFound.imgSrc}}"
+										data-imagezoom="true" class="img-responsive" alt=""> </div>
+							</li>
 					</div>
-					<div class="col-md-6 single-top-right">
-						<h3 class="item_name">{{productFound.ten}}</h3>
-						<p>Thời gian xử lý: Hàng sẽ được xuất xưởng trong vòng 2-3 ngày làm việc. </p>
-						<div class="single-rating">
-							<ul>
-								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li class="rating">20 dánh giá</li>
-								<li><a href="#">Thêm đánh giá của bạn</a></li>
-							</ul> 
-						</div>
-						<div class="single-price">
-							<ul>
-								<li>{{productFound.gia}}</li>  
-								<li><span class="w3off">Giảm 10% </span></li> 
-								<li>Kết thúc vào ngày: 15/10</li>
-								<li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i> Phiếu giảm giá</a></li>
-							</ul>	
-						</div> 
-						<p class="single-price-text">Sản phẩm tốt, rất tốt, tuyệt vời</p>
-						<form action="#" method="post">
-							<input type="hidden" name="cmd" value="_cart" />
-							<input type="hidden" name="add" value="1" /> 
-							<input type="hidden" name="w3ls1_item" value="Handbag" /> 
-							<input type="hidden" name="amount" value="540.00" /> 
-							<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-						</form>
-						<button class="w3ls-cart w3ls-cart-like"><i class="fa fa-heart-o" aria-hidden="true"></i> Thêm vào danh sách yêu thích </button>
-					</div>
-					<div class="clearfix"> </div>  
 				</div>
-			</div> 
-				
-			<!-- collapse-tabs -->
-			<div class="collpse tabs">
-				<h3 class="w3ls-title">Thông tin về sản phẩm</h3> 
-				<div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingOne">
-							<h4 class="panel-title">
-								<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									<i class="fa fa-file-text-o fa-icon" aria-hidden="true"></i> Mô tả <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
-								</a>
-							</h4>
-						</div>
-						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-							<div class="panel-body">
-								Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
-							</div>
+				<div class="col-md-6 single-top-right">
+					<h3 class="item_name">{{productFound.ten}}</h3>
+					<p>Thời gian xử lý: Hàng sẽ được xuất xưởng trong vòng 2-3 ngày làm việc. </p>
+					<div class="single-rating">
+						<ul>
+							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+							<li class="rating">20 dánh giá</li>
+							<li><a href="#">Thêm đánh giá của bạn</a></li>
+						</ul>
+					</div>
+					<div class="single-price">
+						<div id="result"></div>
+						<ul>
+							<li>{{productFound.gia}}</li>
+							<li><span class="w3off">Giảm 10% </span></li>
+							<li>Kết thúc vào ngày: 15/10</li>
+							<li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i> Phiếu giảm giá</a></li>
+						</ul>
+					</div>
+					<p class="single-price-text">Sản phẩm tốt, rất tốt, tuyệt vời</p>
+					{{!-- <form action="#" method="post">
+						<input type="hidden" name="cmd" value="_cart" />
+						<input type="hidden" name="add" value="1" />
+						<input type="hidden" name="w3ls1_item" value="{{productFound.ten}}" />
+						<input type="hidden" name="amount" value="{{productFound.gia}}" /> 
+					</form> --}}
+					<input type="text" name="imgSrc" id="imgSrc" value="{{productFound.imgSrc}}" hidden=true>
+					<input type="text" name="email" id="email" value="{{user.email}}" hidden=true>
+					<input type="text" name="ten" id="ten" value="{{productFound.ten}}" hidden=true>
+					<input type="text" name="gia" id="gia" value="{{productFound.gia}}" hidden=true>
+					<input type="text" name="_id" id="_id" value="{{user._id}}" hidden=true>
+					<input type="text" name="idsanpham" id="idsanpham" value="{{productFound._id}}" hidden=true>
+					<button type="submit" class="w3ls-cart" id="submit"><i class="fa fa-cart-plus"
+							aria-hidden="true"></i> Thêm
+						vào giỏ hàng</button>
+					<button class="w3ls-cart w3ls-cart-like"><i class="fa fa-heart-o" aria-hidden="true"></i> Thêm vào
+						danh sách yêu thích </button>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+		<!-- collapse-tabs -->
+		<div class="collpse tabs">
+			<h3 class="w3ls-title">Thông tin về sản phẩm</h3>
+			<div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<h4 class="panel-title">
+							<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion"
+								href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								<i class="fa fa-file-text-o fa-icon" aria-hidden="true"></i> Mô tả <span
+									class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i
+									class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+							</a>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+						aria-labelledby="headingOne">
+						<div class="panel-body">
+							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingTwo">
-							<h4 class="panel-title">
-								<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									<i class="fa fa-info-circle fa-icon" aria-hidden="true"></i> Thông tin thêm <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
-								</a> 
-							</h4>
-						</div>
-						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">
-								Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
-							</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingTwo">
+						<h4 class="panel-title">
+							<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion"
+								href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								<i class="fa fa-info-circle fa-icon" aria-hidden="true"></i> Thông tin thêm <span
+									class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i
+									class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+							</a>
+						</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+						<div class="panel-body">
+							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingThree">
-							<h4 class="panel-title">
-								<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> Đánh giá (5) <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
-								</a>
-							</h4>
-						</div>
-						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-							<div class="panel-body">
-								Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
-							</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingThree">
+						<h4 class="panel-title">
+							<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion"
+								href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> Đánh giá (5) <span
+									class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i
+									class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+							</a>
+						</h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+						aria-labelledby="headingThree">
+						<div class="panel-body">
+							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingFour">
-							<h4 class="panel-title">
-								<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-									<i class="fa fa-question-circle fa-icon" aria-hidden="true"></i> Giúp đỡ <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
-								</a>
-							</h4>
-						</div>
-						<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-							<div class="panel-body">
-								Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
-							</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingFour">
+						<h4 class="panel-title">
+							<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion"
+								href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+								<i class="fa fa-question-circle fa-icon" aria-hidden="true"></i> Giúp đỡ <span
+									class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i
+									class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+							</a>
+						</h4>
+					</div>
+					<div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
+						aria-labelledby="headingFour">
+						<div class="panel-body">
+							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- //collapse --> 
 		</div>
+		<!-- //collapse -->
 	</div>
+</div>
+<script>
+	$('#submit').click((e) => {
+		e.preventDefault();
+		console.log('click');
+		var data = {};
+		data.ten = $('#ten').val();
+		data.gia = $('#gia').val();
+		data.imgSrc = $('#imgSrc').val();
+		data.idsanpham = $('#idsanpham').val();
+		data.tongtien = 1;
+		data.soluong = 1;
+		data.tongsoluong = 1;
+
+		data.email = $('#email').val();
+		data._id = $('#_id').val();
+		$.ajax({
+			url: "/API/product/addtocart",
+			type: "post",
+			dataType: "json",
+			data: (data),
+			success: function (text) {
+				console.log((text));
+				$('#result').addClass('alert alert-success')
+				$('#result').html(text);
+
+			}
+		})
+	})
+</script>

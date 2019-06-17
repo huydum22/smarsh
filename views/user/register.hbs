@@ -29,17 +29,19 @@
 					<div class="clearfix"></div>
 				</div>
 				<label>Mật khẩu</label>
+				<span id="error-message1" aria-hidden="true" role="alert"> </span>
+
 				<div class="key">
 					<i class="fa fa-lock" aria-hidden="true"></i>
 					<input type="password" name="pass" id="pass" placeholder="Mật khẩu" required>
 					<div class="clearfix"></div>
 				</div>
 				<label>Xác nhận</label>
-				<span id="error-message1" aria-hidden="true" role="alert"> </span>
+				<span id="error-message2" aria-hidden="true" role="alert"> </span>
 				<div class="key">
 					<i class="fa fa-lock" aria-hidden="true"></i>
 					<input type="password" name="confirm_password" id="confirm_password" data-parsley-equalto="#pass"
-						placeholder="Xác nhận mật khẩu" required>
+						placeholder="Xác nhận mật khẩu" required disabled>
 					<div class="clearfix"></div>
 				</div>
 				<label>Địa chỉ</label>
@@ -64,28 +66,12 @@
 					<input type="date" name="date" required="" placeholder="Ngày sinh">
 					<div class="clearfix"></div>
 				</div>
-				<input type="submit" value="Đăng kí" id="register">
+				<input type="submit" value="Đăng kí" id="register" disabled>
 			</form>
 		</div>
 	</div>
 </div>
-<script>
-	var password = document.getElementById("pass"), confirm_password = document.getElementById("confirm_password")
-	function validatePassword() {
-		if (password.value != confirm_password.value) {
-			$('#error-message1').addClass('alert1 alert-danger');
-				$('#error-message1').html('Mật khẩu chưa trùng khớp.');
-				$("#register").attr("disabled", true);
-		} else {
-			$('#error-message1').removeClass('alert1 alert-danger')
-				$('#error-message1').html('');
-				$("#register").attr("disabled", false);
-		}
-	}
 
-	password.onchange = validatePassword;
-	confirm_password.onkeyup = validatePassword;
-</script>
 <script>
 	$('#email').keyup(function () {
 		var email = document.getElementById("email")
@@ -103,4 +89,58 @@
 		}
 		)
 	})
+</script>
+<script>
+	$('#pass').keyup(function () {
+		var checkPass = $('#pass').val();
+		if (checkPass.length > 6) {
+
+			var strongRegex = new RegExp("^(?=.{6,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$", "g");
+
+			if (strongRegex.test(checkPass)) {
+				// If ok regex doesn't match the password
+				$('#error-message1').removeClass().html('');
+				$("#register").attr("disabled", false);
+				$("#confirm_password").attr("disabled", false);
+
+
+			}
+			else {
+				$('#error-message1').removeClass().addClass('alert1 alert-danger').html('Mật khẩu nên có số, chữ cái viết hoa');
+				$("#register").attr("disabled", true);
+				$("#confirm_password").attr("disabled", true);
+
+			}
+		}
+		else {
+			$('#error-message1').addClass('alert1 alert-danger');
+			$("#error-message1").html("Mật khẩu quá ngắn, xin hãy nhập lại");
+			$("#register").attr("disabled", true);
+			$("#confirm_password").attr("disabled", true);
+
+
+		}
+	})
+</script>
+<script>
+	var password = document.getElementById("pass"), confirm_password = document.getElementById("confirm_password")
+	function validatePassword() {
+		if (confirm_password.value.length < 6) {
+			$('#error-message2').addClass('alert1 alert-danger');
+			$("#error-message2").html("Mật khẩu quá ngắn ")
+		} else {
+			if (password.value != confirm_password.value) {
+				$('#error-message2').addClass('alert1 alert-danger');
+				$('#error-message2').html('Mật khẩu chưa trùng khớp.');
+				$("#register").attr("disabled", true);
+			} else {
+				$('#error-message2').removeClass('alert1 alert-danger')
+				$('#error-message2').html('');
+				$("#register").attr("disabled", false);
+			}
+		}
+	}
+
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
 </script>

@@ -6,6 +6,7 @@
 			{{#if message}}
 			<div class="alert alert-danger">{{message}}</div>
 			{{/if}}
+			<div id="message"></div>
 			<form action="" method="post">
 				<div class="key">
 					<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -17,7 +18,7 @@
 					<input type="password" name="pass" id="pass" required="" placeholder="Mật khẩu">
 					<div class="clearfix"></div>
 				</div>
-				<input type="submit" value="Đăng nhập">
+				<input type="submit" value="Đăng nhập" id="login">
 			</form>
 		</div>
 		<div class="forg">
@@ -27,3 +28,28 @@
 		</div>
 	</div>
 </div>
+<script>
+	$('#pass').keyup(function () {
+		var checkPass = $('#pass').val();
+		console.log(checkPass.length)
+		if (checkPass.length > 6) {
+			var strongRegex = new RegExp("^(?=.{6,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$", "g");
+			if (strongRegex.test(checkPass)) {
+				$('#message').removeClass().html('');
+				$("#login").attr("disabled", false);
+			}
+			else {
+				$('#message').addClass('alert alert-danger');
+				$("#message").html("Mật khẩu nên có chữ số, chữ cái viết hoa");
+				$("#login").attr("disabled", true);
+
+			}
+		}
+		else {
+			$('#message').addClass('alert alert-danger');
+			$("#message").html("Mật khẩu quá ngắn ");
+			$("#login").attr("disabled", true);
+
+		}
+	})
+</script>

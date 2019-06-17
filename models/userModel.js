@@ -59,13 +59,25 @@ const checkEmail = async (email) => {
     return false;
 }
 
+const updateUser = async (id,req)=>{
+    return await list.findByIdAndUpdate(id ,{
+        name        :req.body.name,
+        sdt         :req.body.sdt,
+        username    :req.body.username,
+        address     :req.body.address,
+        gender      :req.body.gender,
+        date        :req.body.date,
+    })
+}
+
 
 module.exports = {
     list : list,
     saveUser : saveUser,
     getUser : getUser,
     validPassword : validPassword,
-    checkEmail : checkEmail
+    checkEmail : checkEmail,
+    updateUser: updateUser
 }
 
 

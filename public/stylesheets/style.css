@@ -1720,7 +1720,7 @@ p.sbmincart-empty-text {
 /*-- products --*/
 
 .products {
-    background: url(../images/a.jpg)no-repeat center 0px;
+    background: no-repeat center 0px;
     background-size: cover;
 }
 
@@ -4117,5 +4117,13 @@ p.w3-agile {
     border-radius: 5px;
 }
 
-
+.addToCartStyle{
+    color: white;
+}
+.addToCartStyle:hover{
+    color: white;
+}
+.checkoutincart{
+    float: right;
+}
 /*-- //responsive--*/

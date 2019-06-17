@@ -4,8 +4,7 @@ const { forwardAuthenticated } = require('../config/Auth/auth');
 var about_controller = require('../Controllers/aboutController');
 var contact_controller = require('../Controllers/contactController');
 var faq_controller = require('../Controllers/faqController');
-var pay_controller = require('../Controllers/paymentController');
-var rec_controller = require('../Controllers/recommendedController');
+//var pay_controller = require('../Controllers/paymentController');
 
 
 
@@ -43,8 +42,8 @@ router.get('/faq', faq_controller.Faq_page);
 
 
 /* GET cart page */
-router.get('/payment', pay_controller.payment_page);
-router.get('/recommended', rec_controller.recommended_page);
+//router.get('/payment', pay_controller.payment_page);
+
 
 
 

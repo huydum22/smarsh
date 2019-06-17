@@ -1,31 +1,95 @@
-<div class="contact">
+<div class="check-out">
 	<div class="container">
-	<div class="col-md-9 col-sm-9 contact-right">
-			<form action="#" method="post">
-				<input type="text" name="your name" placeholder="Họ và tên" required=" ">
-				<input type="text" name="your email" placeholder="Địa chỉ email" required=" ">
-				<input type="text" name="your subject" placeholder="Tiêu đề" required=" ">
-				<input type="text" name="your phone number" placeholder="Số điện thoại" required=" ">
-				<textarea  name="your message" placeholder="Tin nhắn" required=" "></textarea>
-				<input type="submit" value="Gởi tin nhắn">
-			</form>
+		<div class="spec ">
+			<h3>Giỏ hàng của bạn</h3>
+			<div class="ser-t">
+				<b></b>
+				<span><i></i></span>
+				<b class="line"></b>
+			</div>
 		</div>
-</div>
-</div>
-<div class="payment">
+		<table class="table ">
+			<tr>
+				<th class="t-head head-it ">Sản phẩm</th>
+				<th class="t-head">Tên</th>
+				<th class="t-head">Giá</th>
+				<th class="t-head">số lượng</th>
+			</tr>
+			{{#each cart.items	}}
+			<tr class="cross">
+				<td class="ring-in t-data">
+					<a href="/products/viewproduct/{{this.idsanpham}}" class="at-in">
+						<img class="img-responsive1" src="{{this.imgSrc}}" alt="">
+					</a>
+					<div class="clearfix"> </div>
+					<div class="close1"> <a href="/cart/item/remove/{{this.idsanpham}}"><i class="fa fa-times"
+								aria-hidden="true"></i></a></div>
+				</td>
+				<td class="t-data">{{this.ten}}</td>
+				<td class="t-data">{{this.gia}}</td>
+				<td class="t-data"><input type="text" name="sl" id="sl" value="{{this.soluong}}"></td>
+			</tr>
+			{{/each}}
+		</table>
+		<input id="_id" value="{{user._id}}" hidden=true>
+		<h3 class="checkoutincart" id="total"></h3>
+	</div>
 	<div class="container">
-		<h3>Mua hàng</h3>
-		<div class="payq1">
-			<h4>Làm thế nào để tôi trả tiền mua hàng ở Fashion Club?</h4>
-			<p>Trả tiền mặt hoặc có thể trả tiền qua phương thức thanh toán online (visa).</p>
-		</div>
-		<div class="payq2">
-			<h4>Tiền mặt khi giao hàng là gì?</h4>
-			<p>Phí giao hàng của từng loại sẽ khác nhau và tùy thuộc vào số lượng của sản phẩm sẽ thu phí khác nhau</p>
-		</div>
-		<div class="payq3">
-			<h4>Làm cách nào để thanh toán bằng thẻ tín dụng / thẻ ghi nợ?</h4>
-			<p>Thêm thẻ thanh toán trong phần tài khoản để có thể sử dụng thẻ tín dụng / thẻ ghi nợ.</p>
+		<div class="form-w3agile">
+			<h3>Thông tin giao hàng</h3>
+			<label>Họ tên</label>
+			<div class="key">
+				<i class="fa fa-user" aria-hidden="true"></i>
+				<input type="text" name="name" required="" placeholder="Họ và tên" value="{{user.name}}">
+				<div class="clearfix"></div>
+			</div>
+			<label>Số điện thoại</label>
+			<div class="key">
+				<i class="fas fa-phone" aria-hidden="true"></i>
+				<input type="number" name="sdt" required="" placeholder="Số điện thoại" value="{{user.sdt}}">
+				<div class="clearfix"></div>
+			</div>
+			<label>Địa chỉ</label>
+			<div class="key">
+				<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+				<input type="text" name="address" required="" placeholder="Địa chỉ" value="{{user.address}}">
+				<div class="clearfix"></div>
+			</div>
+			<input type="submit" value="Giao hàng">
 		</div>
 	</div>
+
 </div>
+<script>
+	var total = 0
+	{{#each cart.items}}
+	total += parseFloat({{ this.gia }}) * parseFloat({{ this.soluong }});
+	console.log(total);
+	{{/each}}	
+	var data = {}
+	data.total = total;
+	data._id = $('#_id').val();
+	$.ajax({
+		url: "/API/product/addTotal",
+		type: "post",
+		dataType: "json",
+		data: (data),
+		success: function (text) {
+			console.log(text);
+			$('#total').html('Tổng cộng:    $' + total);
+		}
+	})
+</script>
+<!--quantity-->
+<script>
+			$('.value-plus').on('click', function () {
+				var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
+				divUpd.text(newVal);
+			});
+			$('.value-minus').on('click', function () {
+				var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
+				if (newVal >= 1) divUpd.text(newVal);
+			});
+</script>
+
+<!--quantity-->

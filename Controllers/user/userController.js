@@ -19,13 +19,13 @@ exports.profile_page = function (req, res) {
         if (!userFound) {
             res.send('that bai');
         }
-        res.render('user/profile', { title: 'Thông tin tài khoản', userFound })
+        res.render('user/profile', { title: 'Thông tin tài khoản', userFound , user: req.user})
     })
 };
 
 exports.logout_page = async (req, res) => {
     req.logout();
-    res.redirect('/products');
+    res.redirect('/');
 }
 
 exports.checkEmail = async (req, res)=>{
