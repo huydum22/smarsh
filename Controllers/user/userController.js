@@ -1,5 +1,6 @@
 const user = require('../../models/userModel');
 
+
 exports.login_page = function (req, res) {
     res.render('user/login',{message: req.flash('error')});
 };
@@ -7,11 +8,12 @@ exports.login_page = function (req, res) {
 exports.register_page = function (req, res) {
     res.render('user/register');
 };
-
-exports.addAccount = function (req, res) {
-    user.saveUser(req.body);
-    res.redirect('/user/login');
+exports.addAccount = async (req, res)=> {
+    return await user.saveUser(req.body,req,res);
 };
+exports.verifyAcc = async (req,res)=>{
+    return await user.verifyAcc(req,res);
+}
 
 exports.profile_page = function (req, res) {
     const findUser = user.list;

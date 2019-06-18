@@ -18,6 +18,7 @@ router.post('/login', (req, res, next) => {
 /* GET register page */
 router.get('/register',user_controller.register_page);
 
+router.get('/verify',user_controller.verifyAcc)
 
 router.post('/register',user_controller.addAccount);
 /* GET profile page */
