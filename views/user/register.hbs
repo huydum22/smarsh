@@ -75,7 +75,7 @@
 <script>
 	$('#email').keyup(function () {
 		var email = document.getElementById("email")
-		$.getJSON('/user/checkEmail?email=' + $('#email').val(), function (data) {
+		$.getJSON('/API/user/checkEmail?email=' + $('#email').val(), function (data) {
 			if (!data) {
 				$('#error-message').addClass('alert1 alert-danger');
 				$('#error-message').html('Email đã tồn tại. Vui lòng chọn email khác.');

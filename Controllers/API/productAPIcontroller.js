@@ -4,6 +4,11 @@ exports.searchList = async (req, res) => {
     const jsonfile = product.searchProductWithKeywordJson(req.query.search, res);
     return jsonfile;
 }
+
+
+exports.searchProductWithPagination = async(req,res)=>{
+    return await product.searchProductWithPagination(req,res);
+}
 exports.searchBrand = async (req, res) => {
     const jsonfile = product.searchBrandJson(req.query.search, res);
     return jsonfile;
@@ -24,4 +29,8 @@ exports.addToCart = async (req, res) => {
 exports.addTotal = async (req,res)=>{
     const addTotal = await Cart.addTotal(req,res);
     res.send(addTotal);
+}
+
+exports.listproduct = async(req,res)=>{
+    return await product.listProductWithPagination(req,res)
 }

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const PRODUCTS = 'products';
+const perPage = 7;
 
 const product = new Schema({
     ten: String,
@@ -18,32 +19,57 @@ const product = new Schema({
     info: String,
     danhgia: String,
     help: String,
-    page: String,
-    search:String
+
 
 }, { collection: PRODUCTS });
 
 const list = mongoose.model(PRODUCTS, product);
-const perPage = 9;
 
-const listProduct1value = async(req,cate,page ,imageOffer, banner, res) => {
+const listProduct1value = async(req,cate ,imageOffer, banner, res) => {
     const listproduct = list;
-    await listproduct.find({'phanloai':cate}).limit(perPage).skip((perPage*page)-perPage).exec((err, Product) => {
+    await listproduct.find({'phanloai':cate}).limit(perPage).exec((err, Product) => {
         if (err) {
             console.log('that bai');
         } else {
-            res.render('listProduct/listProduct', { Product, imageOffer: imageOffer, banner: banner ,page,cate,  user: req.user});
+            res.render('listProduct/listProduct', { Product, imageOffer: imageOffer, banner: banner ,cate,  user: req.user});
         }
     })
 }
 
-const searchProduct = async(req,text,page ,imageOffer, banner, res) => {
+const listProductWithPagination = async(req, res) => {
     const listproduct = list;
-    await listproduct.find({ten:new RegExp(text)}).limit(perPage).skip((perPage*page)-perPage).exec((err, Product) => {
+    const page = req.params.page;
+    const cate = req.params.cate
+    await listproduct.find({'phanloai':cate}).limit(perPage).skip((perPage*page)-perPage).exec((err, Product) => {
         if (err) {
             console.log('that bai');
         } else {
-            res.render('listProduct/searchProduct', { Product, imageOffer: imageOffer, banner: banner ,page,text, user: req.user});
+            res.json(Product);
+        }
+    })
+}
+
+
+const searchProductWithPagination = async(req, res) => {
+    const listproduct = list;
+    const page = req.params.page;
+    const cate = req.params.cate
+    await listproduct.find({ten:new RegExp(cate)}).limit(perPage).skip((perPage*page)-perPage).exec((err, Product) => {
+        if (err) {
+            console.log('that bai');
+        } else {
+            res.json(Product);
+        }
+    })
+}
+
+const searchProduct = async(req,text ,imageOffer, banner, res) => {
+    const listproduct = list;
+    await listproduct.find({ten:new RegExp(text)}).limit(perPage).exec((err, Product) => {
+        if (err) {
+            console.log('that bai');
+        } else {
+            res.render('listProduct/searchProduct', { Product, imageOffer: imageOffer, banner: banner ,text, user: req.user});
         }
     })
 }
@@ -113,13 +139,14 @@ module.exports = {
     list                            :list,
     listProduct1value               :listProduct1value,
     viewProduct                     :viewProduct,
-    perPage                         :perPage,
     searchProduct                   :searchProduct,
     searchProductWithKeywordJson    :searchProductWithKeywordJson,
     searchBrandJson                 :searchBrandJson,
     searchColorJson                 :searchColorJson,
     searchSizeJson                  :searchSizeJson,
-    getProduct                      :getProduct
+    getProduct                      :getProduct,
+    listProductWithPagination       :listProductWithPagination,
+    searchProductWithPagination     :searchProductWithPagination
 }
 
 //module.exports.listProduct = listProduct;

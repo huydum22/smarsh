@@ -5,3 +5,9 @@ exports.updateUser = async(req,res)=>{
     const update = await User.updateUser(id,req);
     res.send(update)
 }
+
+exports.checkEmail = async (req, res)=>{
+    const userExist = await User.checkEmail(req.query.email);
+    res.json(userExist);
+
+}

@@ -27,6 +27,5 @@ router.get('/profile/:id',ensureAuthenticated,user_controller.profile_page);
 
 router.get('/logout', user_controller.logout_page);
 
-router.get('/checkEmail',user_controller.checkEmail);
 
 module.exports = router;

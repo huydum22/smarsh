@@ -30,9 +30,5 @@ exports.logout_page = async (req, res) => {
     res.redirect('/');
 }
 
-exports.checkEmail = async (req, res)=>{
-    const userExist = await user.checkEmail(req.query.email);
-    res.json(userExist);
 
-}
 

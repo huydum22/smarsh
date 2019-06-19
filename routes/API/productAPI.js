@@ -8,4 +8,7 @@ router.get('/searchColor', productAPIController.searchColor);
 router.get('/searchSize', productAPIController.searchSize);
 router.post('/addtocart',productAPIController.addToCart)
 router.post('/addTotal',productAPIController.addTotal)
+router.get('/:cate/:page',productAPIController.listproduct)
+router.get('/searchProduct/:cate/:page', productAPIController.searchProductWithPagination);
+
 module.exports = router
