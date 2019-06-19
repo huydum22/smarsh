@@ -1,0 +1,57 @@
+<div class="check-out">
+    <div class="container">
+        <div class="spec ">
+            <h3>{{title}}</h3>
+                <div class="ser-t">
+                    <b></b>
+                    <span><i></i></span>
+                    <b class="line"></b>
+                </div>
+        </div>
+        <h4 class="customh4">Thông tin</h4>
+        <div class="clearfix"></div>
+        <table class="table ">
+            <tr>
+                <th class="t-head head-it ">người gửi</th>
+                <th class="t-head">Người nhận</th>
+                <th class="t-head">Ngày</th>
+                <th class="t-head">Tổng tiền</th>
+                <th class="t-head">Tình trạng</th>
+            </tr>
+            <tr>
+                <td class="t-data">{{viewOrder.email}}</td>
+                <td class="t-data">{{viewOrder.tenNguoiNhan}}</td>
+                <td class="t-data">{{viewOrder.ngaymua}}</td>
+                <td class="t-data">${{viewOrder.tongtien}}</td>
+                <td class="t-data">{{viewOrder.status}}</td>
+            </tr>
+        </table>
+        <div class="clearfix"></div>
+        <h4 class="customh4">Sản phẩm</h4>
+        <table class="table ">
+            <tr>
+                <th class="t-head head-it ">Sản phẩm</th>
+                <th class="t-head">Tên</th>
+                <th class="t-head">Giá</th>
+                <th class="t-head">số lượng</th>
+            </tr>
+            {{#each viewOrder.items	}}
+            <tr class="cross">
+                <td class="ring-in t-data">
+                    <a href="/products/viewproduct/{{this.idsanpham}}" class="at-in">
+                        <img class="img-responsive1" src="{{this.imgSrc}}" alt="">
+                    </a>
+                    <div class="clearfix"> </div>
+                    
+                </td>
+                <td class="t-data">{{this.ten}}</td>
+                <td class="t-data">${{this.gia}}</td>
+                <td class="t-data">{{this.soluong}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+
+</div>
+
+

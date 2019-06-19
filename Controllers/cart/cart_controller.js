@@ -7,5 +7,5 @@ exports.removeItem = async(req,res)=>{
     const user = req.user;
     const id = req.params.id;
     const removeItem = await Cart.RemoveItem(id,user);
-    res.redirect('/cart/payment');
+    res.redirect('/cart');
 }

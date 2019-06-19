@@ -5,3 +5,7 @@ exports.payment_page = async (req, res) =>{
     res.render('Payment/payment',{user: req.user, cart:cart});
 };
 
+exports.checkOut_page = async (req,res)=>{
+    await res.render('Payment/deliveryAddress',{user: req.user})
+}
+

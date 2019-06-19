@@ -1,0 +1,27 @@
+<div class="check-out">
+    <div class="container">
+        <div class="spec ">
+            <h3>{{title}}</h3>
+        </div>
+        <table class="table ">
+            <tr>
+                <th class="t-head ">Mã</th>
+                <th class="t-head ">ngày mua</th>
+                <th class="t-head">tên</th>
+                <th class="t-head">tổng tiền</th>
+                <th class="t-head">tình trạng</th>
+
+            </tr>
+            {{#each listOrder}}
+            <tr>
+                <td class="t-data"><a href="/order/viewOrder/{{this._id}}">{{this._id}}</a></td>
+                <td class="t-data">{{this.ngaymua}}</td>
+                <td class="t-data">{{this.items.[0].ten}} + ... </td>
+                <td class="t-data">${{this.tongtien}}</td>
+                <td class="t-data">{{this.status}}</td>
+            </tr>
+            
+            {{/each}}
+        </table>
+    </div>
+</div>

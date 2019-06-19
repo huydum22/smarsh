@@ -11,7 +11,10 @@ const cart = new Schema({
     items: [{
         ten: String,
         idsanpham: String,
-        soluong: String,
+        soluong: {
+            type:String,
+            default:1
+        },
         gia: String,
         imgSrc:String
     }],
@@ -102,6 +105,15 @@ const addToCart = async (req, res) => {
     }
 }
 
+
+const checkUserInCart =async (id)=>{
+    return await listinCart.findById(id);
+}
+
+const deleteUserInCart = async(id)=>{
+    return await listinCart.findByIdAndDelete(id);
+}
+
 module.exports = {
     init: init,
     listinCart: listinCart,
@@ -109,7 +121,9 @@ module.exports = {
     addToCart: addToCart,
     checkUser :checkUser,
     addTotal: addTotal,
-    RemoveItem : RemoveItem
+    RemoveItem : RemoveItem,
+    checkUserInCart:checkUserInCart,
+    deleteUserInCart:deleteUserInCart
 }
 
 

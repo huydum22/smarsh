@@ -27,58 +27,41 @@
 				</td>
 				<td class="t-data">{{this.ten}}</td>
 				<td class="t-data">{{this.gia}}</td>
-				<td class="t-data"><input type="text" name="sl" id="sl" value="{{this.soluong}}"></td>
+				<td class="t-data">{{this.soluong}}</td>
 			</tr>
 			{{/each}}
 		</table>
-		<input id="_id" value="{{user._id}}" hidden=true>
-		<h3 class="checkoutincart" id="total"></h3>
-	</div>
-	<div class="container">
-		<div class="form-w3agile">
-			<h3>Thông tin giao hàng</h3>
-			<label>Họ tên</label>
-			<div class="key">
-				<i class="fa fa-user" aria-hidden="true"></i>
-				<input type="text" name="name" required="" placeholder="Họ và tên" value="{{user.name}}">
-				<div class="clearfix"></div>
-			</div>
-			<label>Số điện thoại</label>
-			<div class="key">
-				<i class="fas fa-phone" aria-hidden="true"></i>
-				<input type="number" name="sdt" required="" placeholder="Số điện thoại" value="{{user.sdt}}">
-				<div class="clearfix"></div>
-			</div>
-			<label>Địa chỉ</label>
-			<div class="key">
-				<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-				<input type="text" name="address" required="" placeholder="Địa chỉ" value="{{user.address}}">
-				<div class="clearfix"></div>
-			</div>
-			<input type="submit" value="Giao hàng">
+		<div class="col-md-12 text-center">
+			<input id="_id" value="{{user._id}}" hidden=true>
+			<h3 class="checkoutincart" id="total"> </h3>
 		</div>
 	</div>
-
+	<div class="col-md-12 text-center">
+		<a class="btn btn-outline-secondary" id="submit">tiến hành đặt hàng</a>
+	</div>
 </div>
 <script>
 	var total = 0
 	{{#each cart.items}}
-	total += parseFloat({{ this.gia }}) * parseFloat({{ this.soluong }});
+	total += parseFloat({{this.gia}}) * parseFloat({{this.soluong}});
 	console.log(total);
 	{{/each}}	
-	var data = {}
-	data.total = total;
-	data._id = $('#_id').val();
-	$.ajax({
-		url: "/API/product/addTotal",
-		type: "post",
-		dataType: "json",
-		data: (data),
-		success: function (text) {
-			console.log(text);
-			$('#total').html('Tổng cộng:    $' + total);
-		}
-	})
+	if (total !== 0){
+		$('#submit').attr("href","/cart/checkout")
+			var data = {}
+			data.total = total;
+			data._id = $('#_id').val();
+			$.ajax({
+				url: "/API/product/addTotal",
+				type: "post",
+				dataType: "json",
+				data: (data),
+				success: function (text) {
+					console.log(text);
+					$('#total').html('Tổng cộng:    $' + total);
+				}
+			})
+	}
 </script>
 <!--quantity-->
 <script>

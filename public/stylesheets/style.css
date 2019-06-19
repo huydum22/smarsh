@@ -2329,7 +2329,38 @@ p.single-price-text {
     background: none;
 }
 
-.key select[type="text"] {
+
+.key1 {
+    background: #fff;
+    border: 1px solid #999;
+    margin-bottom: 2em;
+    margin-right: 8em
+}
+
+.key1 i {
+    float: left;
+    color: #999;
+    font-size: 1.1em;
+    padding: 13px;
+}
+
+.key1 input[type="text"],
+.key1 input[type="password"],
+.key1 input[type="number"],
+.key1 input[type="email"],
+.key1 input[type="date"] {
+    width: 89%;
+    padding: 10px 10px;
+    font-size: 1em;
+    border: none;
+    border-bottom: none;
+    outline: none;
+    color: #999;
+    float: left;
+    background: none;
+}
+
+.key1 select[type="text"] {
     width: 90%;
     padding: 10px 10px;
     font-size: 1.3em;
@@ -2379,12 +2410,15 @@ table.table {
     border: 1px solid #D0D0D0;
 }
 
+
 td.t-data {
     border: 1px solid #D2D2D2;
     padding: 10px !important;
     color: #000;
     vertical-align: middle !important;
+    border: 1px solid #D2D2D2 !important;
     font-size: 1em !important;
+    text-align: center;
 }
 
 th.t-head {
@@ -2393,6 +2427,7 @@ th.t-head {
     font-size: 1em !important;
     padding: 0.6em !important;
     border: 1px solid #D2D2D2 !important;
+    text-align: center;
 }
 
 a.at-in {
@@ -4125,4 +4160,9 @@ p.w3-agile {
 .checkoutincart{
     float: right;
 }
+.customh4{
+    float: left;
+margin: 1em;
+}
+
 /*-- //responsive--*/

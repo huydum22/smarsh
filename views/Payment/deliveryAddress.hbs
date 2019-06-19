@@ -1,0 +1,26 @@
+<div class="container">
+		<div class="form-w3agile">
+			<h3>Thông tin giao hàng</h3>
+			<form action="/order" method="GET">
+			<label>Họ tên</label>
+			<div class="key">
+				<i class="fa fa-user" aria-hidden="true"></i>
+				<input type="text" name="tenNguoiNhan" required="" placeholder="Họ và tên" value="{{user.name}}">
+				<div class="clearfix"></div>
+			</div>
+			<label>Số điện thoại</label>
+			<div class="key">
+				<i class="fas fa-phone" aria-hidden="true"></i>
+				<input type="number" name="sdtNguoiNhan" required="" placeholder="Số điện thoại" value="{{user.sdt}}">
+				<div class="clearfix"></div>
+			</div>
+			<label>Địa chỉ</label>
+			<div class="key">
+				<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+				<input type="text" name="diachiNguoiNhan" required="" placeholder="Địa chỉ" value="{{user.address}}">
+				<div class="clearfix"></div>
+			</div>
+			<input type="submit" value="Giao hàng">
+			</form>
+		</div>
+	</div>

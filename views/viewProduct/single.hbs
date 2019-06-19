@@ -41,6 +41,11 @@
 						<input type="hidden" name="w3ls1_item" value="{{productFound.ten}}" />
 						<input type="hidden" name="amount" value="{{productFound.gia}}" /> 
 					</form> --}}
+					<div class="key1">
+					<i class="fas fa-sort-numeric-up" aria-hidden="true"></i>
+					<input type="number" name="soluong" id="soluong" required="" min="1" value="1">
+					<div class="clearfix"></div>
+				</div>
 					<input type="text" name="imgSrc" id="imgSrc" value="{{productFound.imgSrc}}" hidden=true>
 					<input type="text" name="email" id="email" value="{{user.email}}" hidden=true>
 					<input type="text" name="ten" id="ten" value="{{productFound.ten}}" hidden=true>
@@ -147,7 +152,7 @@
 		data.imgSrc = $('#imgSrc').val();
 		data.idsanpham = $('#idsanpham').val();
 		data.tongtien = 1;
-		data.soluong = 1;
+		data.soluong = $('#soluong').val();;
 		data.tongsoluong = 1;
 
 		data.email = $('#email').val();

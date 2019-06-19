@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/user');
 const cartRouter = require('./routes/cart');
+const orderRouter = require('./routes/order');
 const productAPIRouter = require('./routes/API/productAPI');
 const userAPIRouter = require('./routes/API/userAPI');
 
@@ -71,6 +72,7 @@ app.use('/user', userRouter);
 app.use('/API/product', productAPIRouter);
 app.use('/API/user', userAPIRouter);
 app.use('/cart', cartRouter);
+app.use('/order',orderRouter);
 
 
 const isEqual = function(a, b, opts) {
