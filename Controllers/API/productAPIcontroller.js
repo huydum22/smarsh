@@ -34,3 +34,16 @@ exports.addTotal = async (req,res)=>{
 exports.listproduct = async(req,res)=>{
     return await product.listProductWithPagination(req,res)
 }
+
+
+exports.addComment = async (req,res)=>{
+    const newcmt = await product.addComment(req,res);
+    return await product.list.findById(req.body.id,(err, loadcmt)=>{
+        if (err){
+            console.log('that bai');
+        }
+        else{
+            res.json(loadcmt);
+        }
+    });
+}

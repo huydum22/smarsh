@@ -25,6 +25,15 @@ exports.profile_page = function (req, res) {
     })
 };
 
+exports.changePass = async (req,res)=>{
+    await res.render('user/changePassword', { title: 'Đổi Mật khẩu' , user: req.user});
+}
+
+
+exports.saveNewPass = async(req,res)=>{
+    
+}
+
 exports.logout_page = async (req, res) => {
     req.logout();
     res.redirect('/');

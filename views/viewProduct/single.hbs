@@ -42,10 +42,10 @@
 						<input type="hidden" name="amount" value="{{productFound.gia}}" /> 
 					</form> --}}
 					<div class="key1">
-					<i class="fas fa-sort-numeric-up" aria-hidden="true"></i>
-					<input type="number" name="soluong" id="soluong" required="" min="1" value="1">
-					<div class="clearfix"></div>
-				</div>
+						<i class="fas fa-sort-numeric-up" aria-hidden="true"></i>
+						<input type="number" name="soluong" id="soluong" required="" min="1" value="1">
+						<div class="clearfix"></div>
+					</div>
 					<input type="text" name="imgSrc" id="imgSrc" value="{{productFound.imgSrc}}" hidden=true>
 					<input type="text" name="email" id="email" value="{{user.email}}" hidden=true>
 					<input type="text" name="ten" id="ten" value="{{productFound.ten}}" hidden=true>
@@ -106,7 +106,7 @@
 						<h4 class="panel-title">
 							<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion"
 								href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> Đánh giá (5) <span
+								<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> Đánh giá <span
 									class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i
 									class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
 							</a>
@@ -114,8 +114,12 @@
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
 						aria-labelledby="headingThree">
-						<div class="panel-body">
-							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
+						<div class="panel-body" id="addnewComment">
+							{{#each productFound.comments}}
+							<div>
+								<p><strong>{{this.tenNguoiDanhgia}}</strong>:{{this.comment}}</p>
+							</div>
+							{{/each}}
 						</div>
 					</div>
 				</div>
@@ -138,8 +142,20 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
-		<!-- //collapse -->
+		<div class="clearfix"></div>
+		<div class="container">
+			<h3 class="w3ls-title1">Đánh giá</h3>
+			<div class="col-md-12 col-sm-12 customtextar">
+				<textarea class="textarea1" name="comment" id="comment"
+					placeholder="Thêm đánh giá ở đây...."></textarea>
+				<input type="submit" id="commentButton" value="Gửi Đánh giá" class="btn2 btn-outline-secondary">
+				<input type="text" value="{{productFound._id}}" id="btnCmt" hidden=true>
+				<input type="text" value="{{user.name}}" id="btnten" hidden=true>
+				<!-- //collapse -->
+			</div>
+		</div>
 	</div>
 </div>
 <script>
@@ -167,6 +183,28 @@
 				$('#result').addClass('alert alert-success')
 				$('#result').html(text);
 
+			}
+		})
+	})
+</script>
+<script>
+	$('#commentButton').click(() => {
+		var data1 = {}
+		data1.id = $('#btnCmt').val();
+		data1.nguoidanhgia = $('#btnten').val();
+		data1.comment = $('#comment').val();
+		$.ajax({
+			url: "/API/product/addComment",
+			type: "post",
+			dataType: "json",
+			data: (data1),
+			success: function (text) {
+				var source = $('#addnewComment');
+				source.empty();
+				$.each(text.comments, function (i, database) {
+					source.append('<div><p><strong>'+database.tenNguoiDanhgia+'</strong>:'+database.comment+'</p></div>')
+				})
+				$('#comment').val('');
 			}
 		})
 	})

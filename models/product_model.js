@@ -19,7 +19,10 @@ const product = new Schema({
     info: String,
     danhgia: String,
     help: String,
-
+    comments:[{
+        tenNguoiDanhgia:String,
+        comment:String
+    }]
 
 }, { collection: PRODUCTS });
 
@@ -134,6 +137,14 @@ const viewProduct = async(res,req, id) => {
     })
 }
 
+const addComment = async(req,res)=>{
+    id = req.body.id;
+    var newcomment = {tenNguoiDanhgia: req.body.nguoidanhgia,comment:req.body.comment}
+    return await list.findByIdAndUpdate(id,{
+        $push:{comments:newcomment}
+    })
+}
+
 
 module.exports = {
     list                            :list,
@@ -146,7 +157,8 @@ module.exports = {
     searchSizeJson                  :searchSizeJson,
     getProduct                      :getProduct,
     listProductWithPagination       :listProductWithPagination,
-    searchProductWithPagination     :searchProductWithPagination
+    searchProductWithPagination     :searchProductWithPagination,
+    addComment                      :addComment
 }
 
 //module.exports.listProduct = listProduct;

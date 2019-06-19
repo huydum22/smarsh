@@ -10,5 +10,6 @@ router.post('/addtocart',productAPIController.addToCart)
 router.post('/addTotal',productAPIController.addTotal)
 router.get('/:cate/:page',productAPIController.listproduct)
 router.get('/searchProduct/:cate/:page', productAPIController.searchProductWithPagination);
+router.post('/addComment',productAPIController.addComment);
 
 module.exports = router

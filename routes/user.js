@@ -25,6 +25,10 @@ router.post('/register',user_controller.addAccount);
 router.get('/profile/:id',ensureAuthenticated,user_controller.profile_page);
 
 
+router.get('/changePass',ensureAuthenticated,user_controller.changePass)
+router.post('/changePass/:id',ensureAuthenticated,user_controller.saveNewPass)
+
+
 router.get('/logout', user_controller.logout_page);
 
 

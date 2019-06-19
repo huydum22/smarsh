@@ -2185,6 +2185,7 @@ p.single-price-text {
 
 .collpse.tabs {
     padding-bottom: 0;
+    margin-bottom: 2em;
 }
 
 .panel-group {
@@ -4099,6 +4100,14 @@ p.w3-agile {
     margin-top: 2em;
     margin-left: 9em;
 }
+.btn2 {
+    font-size: 14px;
+    padding: 9px 16px;
+    border-radius: 2px;
+    margin-top: 2em;
+    width: 100%;
+    
+}
 
 .btn-outline-secondary {
     color: #00e58b;
@@ -4164,5 +4173,15 @@ p.w3-agile {
     float: left;
 margin: 1em;
 }
-
+.textarea1 {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+  }
 /*-- //responsive--*/
