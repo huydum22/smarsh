@@ -84,10 +84,11 @@ const verifyAcc = async (req, res) => {
                 userFound.active = false;
                 res.redirect('/user/register')
             }
+            else{
             userFound.active = true;
             userFound.save(err => { })
             res.redirect('/user/login')
-        })
+        }})
     }
     else {
         res.end("<h1>Request is from unknown source");
@@ -121,6 +122,26 @@ const checkEmail = async (email) => {
     return false;
 }
 
+
+const saveNewPass = async (req,res)=>{
+    const checkUser = req.user;
+    const curPass = req.body.currentpass;
+    const newPass = req.body.newPass;
+    const isValidPass = await validPassword(checkUser.email,curPass);
+    if (!isValidPass){
+        return false;
+    }
+    else{
+        list.findById(checkUser._id).then(userFound => {
+            bcrypt.hash(newPass, saltRounds, function (err, hash) {
+                userFound.pass = hash;
+                userFound.save(err => {});
+            })
+        })
+    }
+
+}
+
 const updateUser = async (id, req) => {
     return await list.findByIdAndUpdate(id, {
         name: req.body.name,
@@ -140,7 +161,8 @@ module.exports = {
     validPassword: validPassword,
     checkEmail: checkEmail,
     updateUser: updateUser,
-    verifyAcc: verifyAcc
+    verifyAcc: verifyAcc,
+    saveNewPass:saveNewPass
 }
 
 

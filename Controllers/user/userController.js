@@ -6,6 +6,7 @@ exports.login_page = function (req, res) {
 };
 
 exports.register_page = function (req, res) {
+    req.logout();
     res.render('user/register');
 };
 exports.addAccount = async (req, res)=> {
@@ -31,7 +32,13 @@ exports.changePass = async (req,res)=>{
 
 
 exports.saveNewPass = async(req,res)=>{
-    
+    const SaveNewPass = await user.saveNewPass(req,res);
+    if (SaveNewPass == false){
+        await res.render('user/changePassword', { title: 'Đổi Mật khẩu' , user: req.user,message:'Sai mật khẩu'});
+    }
+    else{
+        res.redirect('/');
+    }
 }
 
 exports.logout_page = async (req, res) => {

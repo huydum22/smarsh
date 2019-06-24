@@ -22,7 +22,7 @@
 							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
 							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
 							<li class="rating">20 dánh giá</li>
-							<li><a href="#">Thêm đánh giá của bạn</a></li>
+							<li><a href="">Thêm đánh giá của bạn</a></li>
 						</ul>
 					</div>
 					<div class="single-price">
@@ -31,16 +31,11 @@
 							<li>{{productFound.gia}}</li>
 							<li><span class="w3off">Giảm 10% </span></li>
 							<li>Kết thúc vào ngày: 15/10</li>
-							<li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i> Phiếu giảm giá</a></li>
+							<li><a href=""><i class="fa fa-gift" aria-hidden="true"></i> Phiếu giảm giá</a></li>
 						</ul>
 					</div>
 					<p class="single-price-text">Sản phẩm tốt, rất tốt, tuyệt vời</p>
-					{{!-- <form action="#" method="post">
-						<input type="hidden" name="cmd" value="_cart" />
-						<input type="hidden" name="add" value="1" />
-						<input type="hidden" name="w3ls1_item" value="{{productFound.ten}}" />
-						<input type="hidden" name="amount" value="{{productFound.gia}}" /> 
-					</form> --}}
+					{{#if user}}
 					<div class="key1">
 						<i class="fas fa-sort-numeric-up" aria-hidden="true"></i>
 						<input type="number" name="soluong" id="soluong" required="" min="1" value="1">
@@ -57,6 +52,7 @@
 						vào giỏ hàng</button>
 					<button class="w3ls-cart w3ls-cart-like"><i class="fa fa-heart-o" aria-hidden="true"></i> Thêm vào
 						danh sách yêu thích </button>
+					{{/if}}
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -80,7 +76,7 @@
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
 						aria-labelledby="headingOne">
 						<div class="panel-body">
-							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
+							{{productFound.mota}}
 						</div>
 					</div>
 				</div>
@@ -97,29 +93,7 @@
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
-							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingThree">
-						<h4 class="panel-title">
-							<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion"
-								href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> Đánh giá <span
-									class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i
-									class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
-							</a>
-						</h4>
-					</div>
-					<div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-						aria-labelledby="headingThree">
-						<div class="panel-body" id="addnewComment">
-							{{#each productFound.comments}}
-							<div>
-								<p><strong>{{this.tenNguoiDanhgia}}</strong>:{{this.comment}}</p>
-							</div>
-							{{/each}}
+							{{productFound.info}}
 						</div>
 					</div>
 				</div>
@@ -137,26 +111,50 @@
 					<div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
 						aria-labelledby="headingFour">
 						<div class="panel-body">
-							Sản phảm này là được kế thừa từ sản phẩm kia, sản phẩm kia được kế thừa từ sản phẩm nọ
+							{{productFound.help}}
 						</div>
 					</div>
 				</div>
 			</div>
 
 		</div>
-		<div class="clearfix"></div>
-		<div class="container">
-			<h3 class="w3ls-title1">Đánh giá</h3>
-			<div class="col-md-12 col-sm-12 customtextar">
-				<textarea class="textarea1" name="comment" id="comment"
-					placeholder="Thêm đánh giá ở đây...."></textarea>
-				<input type="submit" id="commentButton" value="Gửi Đánh giá" class="btn2 btn-outline-secondary">
-				<input type="text" value="{{productFound._id}}" id="btnCmt" hidden=true>
-				<input type="text" value="{{user.name}}" id="btnten" hidden=true>
-				<!-- //collapse -->
+		<div class="panel panel-default">
+			<div class="but_list">
+				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					<ul id="myTab" class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active">
+							<a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile"
+								aria-expanded="true">Xem đánh giá</a>
+						</li>
+					</ul>
+					<div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="addnewComment" aria-labelledby="profile-tab">
+							{{#each productFound.comments}}
+							<div>
+								<p><strong>{{this.tenNguoiDanhgia}}</strong>:{{this.comment}}</p>
+							</div>
+							{{/each}}
+						</div>
+					</div>
+				</div>
 			</div>
+
 		</div>
 	</div>
+	<div class="clearfix"></div>
+	<div class="container">
+		<h3 class="w3ls-title1">Đánh giá</h3>
+		<div class="col-md-12 col-sm-12 customtextar">
+			{{#if user}}
+			<textarea class="textarea1" name="comment" id="comment" placeholder="Thêm đánh giá ở đây...."></textarea>
+			<input type="submit" id="commentButton" value="Gửi Đánh giá" class="btn2 btn-outline-secondary">
+			{{/if}}
+			<input type="text" value="{{productFound._id}}" id="btnCmt" hidden=true>
+			<input type="text" value="{{user.name}}" id="btnten" hidden=true>
+			<!-- //collapse -->
+		</div>
+	</div>
+</div>
 </div>
 <script>
 	$('#submit').click((e) => {
@@ -170,7 +168,6 @@
 		data.tongtien = 1;
 		data.soluong = $('#soluong').val();;
 		data.tongsoluong = 1;
-
 		data.email = $('#email').val();
 		data._id = $('#_id').val();
 		$.ajax({
@@ -202,7 +199,7 @@
 				var source = $('#addnewComment');
 				source.empty();
 				$.each(text.comments, function (i, database) {
-					source.append('<div><p><strong>'+database.tenNguoiDanhgia+'</strong>:'+database.comment+'</p></div>')
+					source.append('<div><p><strong>' + database.tenNguoiDanhgia + '</strong>:' + database.comment + '</p></div>')
 				})
 				$('#comment').val('');
 			}
