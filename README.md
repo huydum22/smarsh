@@ -2,7 +2,9 @@ Xây dựng trang web bán hàng dựa trên đồ án môn học trên trườn
 I/ Các tính năng nổi bật
 
   1/ Thiết kế CSDL hợp lí
+  
   2/ Nội dung chính
+  
     _ Sử dụng thư viện passport (http://www.passportjs.org) để thực hiện quá trình login & signin
     
     _ Kiểm tra các ràng buộc về tên đăng nhập, mật khẩu nhập lại, ...
