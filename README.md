@@ -1,9 +1,9 @@
 Xây dựng trang web bán hàng dựa trên đồ án môn học trên trường được phát triển bẳng bằng NodeJS sử dụng template engine là hbs
-I/ Các tính năng nổi bật
+I/ Nội dung chính
 
   1/ Thiết kế CSDL hợp lí
   
-  2/ Nội dung chính
+  2/ Các tính năng nổi bật
   
     _ Sử dụng thư viện passport (http://www.passportjs.org) để thực hiện quá trình login & signin
     
@@ -31,3 +31,7 @@ I/ Các tính năng nổi bật
     
      
   3/ Website đã được đăng và hoạt động tốt trên host thực tế
+  
+    https://smarsh.herokuapp.com/
+    
+    4/ Link demo: https://www.youtube.com/watch?v=UaRMlmqfuNw&feature=youtu.be
