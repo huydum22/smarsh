@@ -12,7 +12,7 @@ var mail, host, link;
 const config = {
     service: 'gmail',
     auth: {
-        user: 'huyho.hcmus@gmail.com',
+        user: 'huyho.fit.hcmus@gmail.com',
         pass: 'huyhuydum'
     }
 };
@@ -21,7 +21,7 @@ const verifyEmail = async (req, res, id) => {
     host = req.get('host');
     link = "http://" + req.get('host') + "/user/verify?id=" + id;
     mail = {
-        from: 'huyho.hcmus@gmail.com',
+        from: 'huyho.fit.hcmus@gmail.com',
         to: req.body.email,
         subject: 'Chào mừng bạn đến với fashion group!!! ',
         text: link,
